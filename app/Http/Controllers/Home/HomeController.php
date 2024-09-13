@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function showDashboard()
     {
-        $student = Auth::student(); // Lấy thông tin người dùng đã đăng nhập
+        $student = Auth::student(); 
         return view('home.index', compact('template','student'));
     }
 

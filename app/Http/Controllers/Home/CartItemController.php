@@ -14,14 +14,14 @@ class CartItemController extends Controller
         $this->cartItemRepository = $cartItemRepository;
     }
 
-    // Xóa một mục khỏi giỏ hàng
+    
     public function destroy($itemId)
     {
         $this->cartItemRepository->removeItem($itemId);
         return redirect()->route('home.cart.index')->with('success', 'Đã xóa mục khỏi giỏ hàng.');
     }
 
-    // Cập nhật số lượng mục trong giỏ hàng
+    
     public function update(Request $request, $itemId)
     {
         $quantity = $request->quantity;

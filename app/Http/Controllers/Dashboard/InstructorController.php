@@ -20,7 +20,7 @@ class InstructorController extends Controller
     public function index()
     {
         $template = 'admin.instructor.index';
-        $instructors = $this->instructorRepository->all(); // Lấy danh sách giảng viên
+        $instructors = $this->instructorRepository->all(); 
         
         return view('admin.layout', compact('template', 'instructors'));
     }
@@ -45,13 +45,13 @@ class InstructorController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4128',
         ]);
 
-        // Mã hóa mật khẩu
+        
         $validated['password'] = Hash::make($request->password);
 
-        // Xử lý upload hình ảnh
+        
         $validated['image'] = $this->handleImageUpload($request);
 
-        // Tạo giảng viên mới
+        
         $this->instructorRepository->create($validated);
 
         return redirect()->route('admin.instructor.index')->with('success', 'Giảng viên được tạo thành công.');
@@ -59,7 +59,7 @@ class InstructorController extends Controller
 
     public function edit($id)
     {
-        // Lấy thông tin giảng viên theo id
+        
         $instructor = $this->instructorRepository->find($id);
         if (!$instructor) {
             return redirect()->route('admin.instructor.index')->with('error', 'Giảng viên không tồn tại.');
@@ -71,7 +71,7 @@ class InstructorController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Lấy thông tin giảng viên theo id
+        
         $instructor = $this->instructorRepository->find($id);
         if (!$instructor) {
             return redirect()->route('admin.instructor.index')->with('error', 'Giảng viên không tồn tại.');
@@ -89,15 +89,15 @@ class InstructorController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4128',
         ]);
 
-        // Nếu có password mới, mã hóa
+        
         if ($request->filled('password')) {
             $validated['password'] = Hash::make($request->password);
         }
 
-        // Xử lý upload hình ảnh (nếu có)
+        
         $validated['image'] = $this->handleImageUpload($request, $instructor->image);
 
-        // Cập nhật thông tin giảng viên
+        
         $this->instructorRepository->update($id, $validated);
 
         return redirect()->route('admin.instructor.index')->with('success', 'Giảng viên được cập nhật thành công.');
@@ -105,7 +105,7 @@ class InstructorController extends Controller
 
     public function destroy($id)
     {
-        // Xóa giảng viên theo id
+       
         $this->instructorRepository->delete($id);
 
         return redirect()->route('admin.instructor.index')->with('success', 'Giảng viên được xóa thành công.');
@@ -113,7 +113,7 @@ class InstructorController extends Controller
 
     public function show($id)
     {
-        // Lấy thông tin giảng viên theo id
+       
         $instructor = $this->instructorRepository->find($id);
         if (!$instructor) {
             return redirect()->route('admin.instructor.index')->with('error', 'Giảng viên không tồn tại.');
@@ -123,16 +123,16 @@ class InstructorController extends Controller
         return view('admin.layout', compact('template', 'instructor'));
     }
 
-    // Xử lý upload hình ảnh
+    
     protected function handleImageUpload(Request $request, $currentImagePath = null)
     {
         if ($request->hasFile('image')) {
-            // Xóa ảnh cũ nếu có
+            
             if ($currentImagePath) {
                 Storage::disk('public')->delete($currentImagePath);
             }
 
-            // Lưu ảnh mới
+            
             $image = $request->file('image');
             return $image->store('instructor/image', 'public');
         }

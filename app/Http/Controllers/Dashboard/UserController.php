@@ -92,15 +92,15 @@ class UserController extends Controller
         'users_category_id' => 'nullable|exists:users_categories,id',
     ]);
 
-    // Nếu password không rỗng thì mã hóa
+    
     if ($request->filled('password')) {
         $validated['password'] = Hash::make($request->password);
     }
 
-    // Xử lý upload ảnh và thay thế ảnh cũ (nếu có)
+ 
     $validated['image'] = $this->handleImageUpload($request, $user->image);
 
-    // Cập nhật thông tin người dùng
+    
     $updated = $this->userRepository->update($id, $validated);
 
     return redirect()->route('admin.users.index')->with('success', 'Người dùng được cập nhật thành công.');
@@ -127,7 +127,7 @@ class UserController extends Controller
     protected function handleImageUpload(Request $request, $currentImagePath = null)
     {
         if ($request->hasFile('image')) {
-            // Xóa ảnh cũ nếu có
+           
             if ($currentImagePath) {
                 Storage::disk('public')->delete($currentImagePath);
             }

@@ -11,19 +11,19 @@ class AuthRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; // Đặt thành true để cho phép tất cả người dùng gửi request
+        return true; 
     }
 
-    // Xác định các quy tắc xác thực cho request này
+    
     public function rules()
     {
         return [
-            'email' => 'required|email', // Yêu cầu phải có email hợp lệ
-            'password' => 'required|min:6', // Mật khẩu phải có ít nhất 6 ký tự
+            'email' => 'required|email', 
+            'password' => 'required|min:6', 
         ];
     }
 
-    // Thông báo lỗi tuỳ chỉnh (không bắt buộc)
+   
     public function messages()
     {
         return [

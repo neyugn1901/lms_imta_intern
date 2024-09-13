@@ -19,11 +19,11 @@ class LoginMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // Nếu đã đăng nhập, chuyển hướng đến trang dashboard
+        
             return redirect()->route('dashboard.index');
         }
 
-        // Nếu chưa đăng nhập, tiếp tục với request
+        
         return $next($request);
     }
 }
