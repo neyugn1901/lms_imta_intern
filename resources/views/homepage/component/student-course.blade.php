@@ -6,7 +6,7 @@
                     <div class="blur-border course-radius align-items-center aos" data-aos="fade-up">
                         <div class="online-course d-flex align-items-center">
                             <div class="course-img">
-                                <img src="assets/img/pencil-icon.svg" alt="Img">
+                                <img src="{{ asset('assets_home/img/pencil-icon.svg') }}" alt="Img">
                             </div>
                             <div class="course-inner-content">
                                 <h4><span>10</span>K</h4>
@@ -21,7 +21,7 @@
                     <div class="blur-border course-radius aos" data-aos="fade-up">
                         <div class="online-course d-flex align-items-center">
                             <div class="course-img">
-                                <img src="assets/img/cources-icon.svg" alt="Img">
+                                <img src="{{ asset('assets_home/img/cources-icon.svg') }}" alt="Img">
                             </div>
                             <div class="course-inner-content">
                                 <h4><span>200</span>+</h4>
@@ -36,7 +36,7 @@
                     <div class="blur-border course-radius aos" data-aos="fade-up">
                         <div class="online-course d-flex align-items-center">
                             <div class="course-img">
-                                <img src="assets/img/certificate-icon.svg" alt="Img">
+                                <img src="{{ asset('assets_home/img/certificate-icon.svg') }}" alt="Img">
                             </div>
                             <div class="course-inner-content">
                                 <h4><span>6</span>K+</h4>
@@ -51,7 +51,7 @@
                     <div class="blur-border course-radius aos" data-aos="fade-up">
                         <div class="online-course d-flex align-items-center">
                             <div class="course-img">
-                                <img src="assets/img/gratuate-icon.svg" alt="Img">
+                                <img src="{{ asset('assets_home/img/gratuate-icon.svg') }}" alt="Img">
                             </div>
                             <div class="course-inner-content">
                                 <h4><span>60</span>K +</h4>

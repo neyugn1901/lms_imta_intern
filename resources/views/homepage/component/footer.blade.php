@@ -19,8 +19,8 @@
                     <h2 class="footer-title">For Instructor</h2>
                     <ul>
                         <li><a href="instructor-profile.html">Profile</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="{{ route('auth.login') }}">Login</a></li>
+                        <li><a href="{{ route('auth.register') }}">Register</a></li>
                         <li><a href="instructor-list.html">Instructor</a></li>
                         <li><a href="instructor-dashboard.html"> Dashboard</a></li>
                     </ul>

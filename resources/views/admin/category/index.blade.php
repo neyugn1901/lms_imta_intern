@@ -56,6 +56,7 @@
                     <thead>
                         <tr>
                             <th>STT</th>
+                            <th>Hình ảnh</th> <!-- Thêm cột ảnh -->
                             <th>Tên Danh mục</th>
                             <th>Mô tả</th>
                             <th>Trạng thái</th>
@@ -66,6 +67,13 @@
                         @forelse($categories as $category)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    @if($category->image)
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" width="50" height="50">
+                                    @else
+                                        <span>Không có ảnh</span>
+                                    @endif
+                                </td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->description }}</td>
                                 <td>{{ $category->active ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
@@ -86,11 +94,13 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Không có danh mục nào</td>
+                                <td colspan="6" class="text-center">Không có danh mục nào</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
+
+               
             </div>
         </div>
     </div>

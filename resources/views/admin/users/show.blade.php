@@ -25,7 +25,8 @@
                     <div class="col-lg-4">
                         @if ($user->image)
                             <div class="text-center">
-                                <img src="{{ asset('storage/' . $user->image) }}" alt="User Image" width="200" height="200">
+                                <img src="{{ asset('storage/' . $user->image) }}" width="200" height="200">
+
                             </div>
                         @else
                             <div class="text-center">
@@ -41,7 +42,7 @@
                                 <td>{{ $user->fullname }}</td>
                             </tr>
                             <tr>
-                                <th>Tên người dùng</th>
+                                <th>Username</th>
                                 <td>{{ $user->username }}</td>
                             </tr>
                             <tr>

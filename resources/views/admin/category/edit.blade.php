@@ -37,10 +37,11 @@
             </div>
 
             <div class="ibox-content">
-                <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
+                <form action="{{ route('admin.category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
+                    <!-- Tên Danh Mục -->
                     <div class="form-group">
                         <label for="name">Tên Danh Mục</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên danh mục" value="{{ old('name', $category->name) }}">
@@ -49,6 +50,7 @@
                         @enderror
                     </div>
 
+                    <!-- Mô Tả -->
                     <div class="form-group">
                         <label for="description">Mô Tả</label>
                         <textarea name="description" id="description" class="form-control" placeholder="Nhập mô tả">{{ old('description', $category->description) }}</textarea>
@@ -57,6 +59,7 @@
                         @enderror
                     </div>
 
+                    <!-- Trạng Thái -->
                     <div class="form-group">
                         <label for="active">Trạng Thái</label>
                         <select name="active" id="active" class="form-control">
@@ -68,6 +71,22 @@
                         @enderror
                     </div>
 
+                    <!-- Hình Ảnh -->
+                    <div class="form-group">
+                        <label for="image">Hình Ảnh</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                        @if($category->image)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" width="100" height="100">
+                                <p><strong>Ảnh hiện tại</strong></p>
+                            </div>
+                        @endif
+                        @error('image')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Nút Cập Nhật -->
                     <button type="submit" class="btn btn-primary">Cập Nhật Danh Mục</button>
                     <a href="{{ route('admin.category.index') }}" class="btn btn-secondary">Hủy</a>
                 </form>

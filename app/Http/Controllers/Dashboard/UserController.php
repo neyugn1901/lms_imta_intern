@@ -7,6 +7,7 @@ use App\Repositories\UserRepositoryInterface;
 use App\Repositories\UserCategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -45,16 +46,13 @@ class UserController extends Controller
             'sex' => 'nullable|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4128',
             'users_category_id' => 'nullable|exists:users_categories,id',
         ]);
 
         $validated['password'] = Hash::make($request->password);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validated['image'] = $imagePath;
-        }
+        $validated['image'] = $this->handleImageUpload($request);
 
         $this->userRepository->create($validated);
 
@@ -74,33 +72,39 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'username' => 'required|string|max:50|unique:users,username,' . $id,
-            'fullname' => 'nullable|string|max:100',
-            'phone' => 'nullable|string|max:20',
-            'dob' => 'nullable|date',
-            'address' => 'nullable|string|max:255',
-            'sex' => 'nullable|string',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'users_category_id' => 'nullable|exists:users_categories,id',
-        ]);
-
-        if ($request->filled('password')) {
-            $validated['password'] = Hash::make($request->password);
-        }
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validated['image'] = $imagePath;
-        }
-
-        $updated = $this->userRepository->update($id, $validated);
-
-        return redirect()->route('admin.users.index')->with('success', 'Người dùng được cập nhật thành công.');
+{
+    // Lấy thông tin người dùng
+    $user = $this->userRepository->find($id);
+    if (!$user) {
+        return redirect()->route('admin.users.index')->with('error', 'Người dùng không tồn tại.');
     }
+
+    $validated = $request->validate([
+        'username' => 'required|string|max:50|unique:users,username,' . $id,
+        'fullname' => 'nullable|string|max:100',
+        'phone' => 'nullable|string|max:20',
+        'dob' => 'nullable|date',
+        'address' => 'nullable|string|max:255',
+        'sex' => 'nullable|string',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+        'password' => 'nullable|string|min:8|confirmed',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4128',
+        'users_category_id' => 'nullable|exists:users_categories,id',
+    ]);
+
+    // Nếu password không rỗng thì mã hóa
+    if ($request->filled('password')) {
+        $validated['password'] = Hash::make($request->password);
+    }
+
+    // Xử lý upload ảnh và thay thế ảnh cũ (nếu có)
+    $validated['image'] = $this->handleImageUpload($request, $user->image);
+
+    // Cập nhật thông tin người dùng
+    $updated = $this->userRepository->update($id, $validated);
+
+    return redirect()->route('admin.users.index')->with('success', 'Người dùng được cập nhật thành công.');
+}
 
     public function destroy($id)
     {
@@ -119,4 +123,19 @@ class UserController extends Controller
         $template = 'admin.users.show';
         return view('admin.layout', compact('template', 'user'));
     }
+
+    protected function handleImageUpload(Request $request, $currentImagePath = null)
+    {
+        if ($request->hasFile('image')) {
+            // Xóa ảnh cũ nếu có
+            if ($currentImagePath) {
+                Storage::disk('public')->delete($currentImagePath);
+            }
+
+            $image = $request->file('image');
+            return $image->store('user/image', 'public');
+        }
+        return $currentImagePath;
+    }
+    
 }

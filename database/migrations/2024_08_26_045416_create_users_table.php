@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedTinyInteger('role')->default(2); // 0: Admin, 1: Instructor, 2: Student
             
             $table->rememberToken();
             $table->timestamps();
@@ -40,5 +41,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        $table->dropColumn('role');
     }
 };

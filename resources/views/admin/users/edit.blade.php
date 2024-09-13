@@ -27,7 +27,7 @@
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="username">Tên người dùng:</label>
+                        <label for="username">Username:</label>
                         <input type="text" name="username" id="username" class="form-control" value="{{ old('username', $user->username) }}">
                         @error('username')
                         <span class="text-danger">{{ $message }}</span>
@@ -112,6 +112,7 @@
                         @if($user->image)
                         <div class="mt-2">
                             <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->username }}" width="100">
+                           
                         </div>
                         @endif
                     </div>

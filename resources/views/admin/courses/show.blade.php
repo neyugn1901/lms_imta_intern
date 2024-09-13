@@ -24,7 +24,7 @@
                     <div class="col-lg-4">
                         @if ($course->image)
                             <div class="text-center">
-                                <img src="{{ asset('public/image' . $course->image) }}" alt="Course Image" width="200" height="200">
+                                <img src="{{ asset('storage/' . $course->image) }}" alt="Course Image" width="200" height="200">
                             </div>
                         @else
                             <div class="text-center">
@@ -60,8 +60,8 @@
                                 <td>
                                     @if ($course->video)
                                         <video width="320" height="240" controls>
-                                            <source src="{{ asset('public/video' . $course->video) }}" type="video/mp4">
-                                            Trình duyệt của bạn không hỗ trợ video.
+                                            <source src="{{ asset('storage/' . $course->video) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
                                         </video>
                                     @else
                                         <p>No Video</p>
@@ -72,7 +72,7 @@
                                 <th>Tài liệu</th>
                                 <td>
                                     @if ($course->file)
-                                        <a href="{{ asset('public/file' . $course->file) }}" download>Tải xuống tài liệu</a>
+                                        <a href="{{ asset('storage/' . $course->file) }}" download>Tải xuống tài liệu</a>
                                     @else
                                         <p>No File</p>
                                     @endif

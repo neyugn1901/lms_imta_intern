@@ -9,30 +9,28 @@ class AuthRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
-        return true;
+        return true; // Đặt thành true để cho phép tất cả người dùng gửi request
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    // Xác định các quy tắc xác thực cho request này
+    public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => 'required|email', // Yêu cầu phải có email hợp lệ
+            'password' => 'required|min:6', // Mật khẩu phải có ít nhất 6 ký tự
         ];
     }
 
-    public function messages(): array
+    // Thông báo lỗi tuỳ chỉnh (không bắt buộc)
+    public function messages()
     {
         return [
-            'email.required' => 'chua nhap email',
-            'email.email' => 'nhap chua dung dinh dang',
-            'password.required' => 'chua nhap mat khau'
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'password.required' => 'Vui lòng nhập mật khẩu.',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
         ];
     }
 }

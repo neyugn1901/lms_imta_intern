@@ -23,8 +23,11 @@
             <li class="active">
                 <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">QUẢN LÝ NGƯỜI DÙNG</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="active"><a href="{{ route('admin.users.index') }}">Người dùng</a></li>
+                    
                     <li class="active"><a href="{{ route('admin.user_category.index') }}">Danh mục</a></li>
+                    <li class="active"><a href="{{ route('admin.users.index') }}">Người dùng</a></li>
+                    <li class="active"><a href="{{ route('admin.instructor.index') }}">Giảng viên</a></li>
+                    <li class="active"><a href="{{ route('admin.student.index') }}">Học viên</a></li>
                     
                 </ul>
             </li>

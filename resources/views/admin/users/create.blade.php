@@ -28,7 +28,7 @@
 
                     <!-- Các trường thông tin người dùng -->
                     <div class="form-group">
-                        <label for="username">Tên người dùng:</label>
+                        <label for="username">Username:</label>
                         <input type="text" name="username" id="username" class="form-control" value="{{ old('username') }}">
                         @error('username')
                         <span class="text-danger">{{ $message }}</span>

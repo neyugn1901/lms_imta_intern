@@ -16,8 +16,8 @@
                         <div class="certified-group blur-border d-flex">
                             <div class="get-certified d-flex align-items-center">
                                 <div class="blur-box">
-                                    <div class="certified-img ">
-                                        <img src="assets/img/icon/icon-1.svg" alt="Img" class="img-fluid">
+                                    <div class="certified-img">
+                                        <img src="{{ asset('assets_home/img/icon/icon-1.svg') }}" alt="Img" class="img-fluid">
                                     </div>
                                 </div>
                                 <p>Stay motivated with engaging instructors</p>
@@ -28,8 +28,8 @@
                         <div class="certified-group blur-border d-flex">
                             <div class="get-certified d-flex align-items-center">
                                 <div class="blur-box">
-                                    <div class="certified-img ">
-                                        <img src="assets/img/icon/icon-2.svg" alt="Img" class="img-fluid">
+                                    <div class="certified-img">
+                                        <img src="{{ asset('assets_home/img/icon/icon-2.svg') }}" alt="Img" class="img-fluid">
                                     </div>
                                 </div>
                                 <p>Keep up with in the latest in cloud</p>
@@ -40,8 +40,8 @@
                         <div class="certified-group blur-border d-flex">
                             <div class="get-certified d-flex align-items-center">
                                 <div class="blur-box">
-                                    <div class="certified-img ">
-                                        <img src="assets/img/icon/icon-3.svg" alt="Img" class="img-fluid">
+                                    <div class="certified-img">
+                                        <img src="{{ asset('assets_home/img/icon/icon-3.svg') }}" alt="Img" class="img-fluid">
                                     </div>
                                 </div>
                                 <p>Get certified with 100+ certification courses</p>
@@ -52,8 +52,8 @@
                         <div class="certified-group blur-border d-flex">
                             <div class="get-certified d-flex align-items-center">
                                 <div class="blur-box">
-                                    <div class="certified-img ">
-                                        <img src="assets/img/icon/icon-4.svg" alt="Img" class="img-fluid">
+                                    <div class="certified-img">
+                                        <img src="{{ asset('assets_home/img/icon/icon-4.svg') }}" alt="Img" class="img-fluid">
                                     </div>
                                 </div>
                                 <p>Build skills your way, from labs to courses</p>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-lg-5 col-md-12 d-flex align-items-end">
             <div class="career-img aos" data-aos="fade-up">
-                <img src="assets/img/join.png" alt="Img" class="img-fluid">
+                <img src="{{ asset('assets_home/img/join.png') }}" alt="Img" class="img-fluid">
             </div>
         </div>
     </div>

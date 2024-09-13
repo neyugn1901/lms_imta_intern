@@ -39,9 +39,9 @@
 
 
         <section class="section trend-course">
-           @include('homepage.component.trend-course')
+           @include('homepage.home.trend-course')
 
-            @include('homepage.component.instructors')  
+            @include('homepage.home.instructors')  
         </section>
 
         @include($template)

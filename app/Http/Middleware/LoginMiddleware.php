@@ -12,13 +12,18 @@ class LoginMiddleware
     /**
      * Handle an incoming request.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::id() > 0){
+        if (Auth::check()) {
+            // Nếu đã đăng nhập, chuyển hướng đến trang dashboard
             return redirect()->route('dashboard.index');
         }
+
+        // Nếu chưa đăng nhập, tiếp tục với request
         return $next($request);
     }
 }

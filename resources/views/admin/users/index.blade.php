@@ -38,7 +38,7 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Tên người dùng</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Loại người dùng</th>
                             <th class="text-center">Thao tác</th>
